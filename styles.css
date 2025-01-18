@@ -17,4 +17,47 @@ body{
     background: white;
     width: 40%;
     height: 40%;
+    border: 5px solid black;
+    /* place-content: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quote{
+    border: 3px solid black;
+    height: 90%;
+    width: 90%;
+}
+
+.quote-text{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    height: 70%;
+}
+
+.btns{
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
+.click{
+    margin: 10px 15px;
+}
+
+.clickbtn{
+    margin-left: 270px;
+}
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 15px  ;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: darkblue;
+    color: white;
 }
