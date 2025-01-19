@@ -29,12 +29,12 @@ function getRandomQuote(){
 function displayQuote(){
     const quote= getRandomQuote();
     const quoteText= document.querySelector(".quote-text");
+    const quoteAuthor= document.querySelector(".quote-author");
 
-    quoteText.textContent=quote;
+    quoteText.innerHTML= `<p>"${quote.text}"</p>`;
+    quoteAuthor.innerHTML=`<p class="author">${quote.author}</p>`;
 }
 
 const btn= document.getElementById("btn")
-btn.onclick(function(){
-    displayQuote();
-})
+btn.addEventListener("click",displayQuote)
 
