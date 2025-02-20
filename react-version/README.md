@@ -1,8 +1,34 @@
-# React + Vite
+# Random Quote Machine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based Random Quote Machine app built with Vite, Material UI, Framer Motion, and Axios. It fetches random quotes and displays them with smooth animations and Material UI styling.
 
-Currently, two official plugins are available:
+## Usage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run the app locally, use the following commands:
+
+**Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+## Preview
+
+To preview the production build after running `npm run build`:
+
+```bash
+npm run preview
+```
+
+This will preview the app as it will appear in production.
+
+## Dependencies
+
+- **@emotion/react**: A library for writing CSS styles with JavaScript.
+- **@emotion/styled**: Styled components library with Emotion.
+- **@mui/icons-material**: Material UI icons for easy use with React.
+- **@mui/material**: Material UI components for building modern UIs.
+- **axios**: A promise-based HTTP client for making API requests.
+- **motion**: A library for animations, used for smooth transitions.
+- **react**: A JavaScript library for building user interfaces.
+- **react-dom**: React's DOM bindings for the browser.
