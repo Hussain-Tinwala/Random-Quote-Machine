@@ -1,81 +1,64 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import MainContainer from './MainContainer';
 import Button from '@mui/material/Button';
 
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { ThemeProvider } from '@mui/material/styles';
+import { motion } from "motion/react"
 
-// import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-// import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+function QuoteMachine() {
+  const [quote, setQuote] = useState('');
+  const [author, setAuthor] = useState('');
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    fetchQuote();
+  }, []);
 
-export default function MainContainer(props) {
+  const backgroundColors = ["#0c034d", "#FF5722", "#2196F3", "#4CAF50", "#9C27B0", "#E91E63"];
+  const textColors = ["#FFFFFF", "#000000", "#FF5722", "#9C27B0", "#FFFFFF", "#795548"];
+
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [textColor, setTextColor] = useState("#000000");
+
+  const fetchQuote = () => {
+    setLoading(true);
+    axios
+      .get('https://dummyjson.com/quotes/random') // API URL
+      .then((response) => {
+        console.log(response)
+        setQuote(response.data.quote);
+        setAuthor(response.data.author);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching quote:', error);
+        setLoading(false);
+      });
+
+      const newBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+      const newTextColor = textColors[Math.floor(Math.random() * textColors.length)];
+
+      setBackgroundColor(newBackgroundColor);
+      setTextColor(newTextColor);
+  };
+
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth=""  >
-        <Box sx={{
-          bgcolor: '#cfe8fc', height: 400, width: 750,
-          borderRadius: '16px',
-          mx: 'auto',
-          mt: 7,
-          borderColor: 'primary.main',
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          justifyContent: 'flex-start'
-        }} >
-
-          <Box component="section" sx={{
-            // width: 650, border: '1px solid grey',
-            m: 5,
-            mb: 2,
-            // mx:2,
-            p: 2,
-            height: 200,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            fontWeight: 'medium',
-            fontSize: 23
-          }}>
-            {props.quote}
-          </Box>
-          <Box component="section" sx={{
-            width: 650, 
-            // border: '1px solid grey',
-            m: 2,
-            // mx:2,
-            px: 5,
-            height: 100,
-            textAlign: 'right',
-            fontWeight: 'bold',
-            fontStyle: 'oblique'
-          }}>
-            - {props.author}
-          </Box>
-
-
-          {/* <Button variant="contained">Hello world</Button>
-          <Button variant="contained">Hello world</Button> */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
-              mb: 2,
-              alignItems: 'end',
-              justifyContent: 'end'
-            }}>
-            <Button variant="contained"
-            onClick={props.fetchQuote}
-            >New Quote</Button>
-          </Box>
-
-        </Box>
-        {/* <Box sx={{ bgcolor: '#cfe8fc', width: 800, height: '100vh' ,color: 'success.main' }} /> */}
-      </Container>
-    </React.Fragment>
+    <div className="quote-machine">
+      {/* <h1>Quote Machine</h1> */}
+      <MainContainer quote={quote} author={author} fetchQuote={fetchQuote}
+          backgroundColor={backgroundColor} 
+          textColor={textColor}
+      />
+      {/* {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <p>"{quote}"</p>
+          <p>- {author}</p>
+        </div>
+      )} */}
+    </div>
   );
 }
+
+export default QuoteMachine;
