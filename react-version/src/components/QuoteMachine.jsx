@@ -14,6 +14,12 @@ function QuoteMachine() {
     fetchQuote();
   }, []);
 
+  const backgroundColors = ["#0c034d", "#FF5722", "#2196F3", "#4CAF50", "#9C27B0", "#E91E63"];
+  const textColors = ["#FFFFFF", "#000000", "#FF5722", "#9C27B0", "#FFFFFF", "#795548"];
+
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
+  const [textColor, setTextColor] = useState("#000000");
+
   const fetchQuote = () => {
     setLoading(true);
     axios
@@ -28,20 +34,29 @@ function QuoteMachine() {
         console.error('Error fetching quote:', error);
         setLoading(false);
       });
+
+      const newBackgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+      const newTextColor = textColors[Math.floor(Math.random() * textColors.length)];
+
+      setBackgroundColor(newBackgroundColor);
+      setTextColor(newTextColor);
   };
 
   return (
     <div className="quote-machine">
-      <h1>Quote Machine</h1>
-      <MainContainer quote={quote} author={author} fetchQuote={fetchQuote}/>
-      {loading ? (
+      {/* <h1>Quote Machine</h1> */}
+      <MainContainer quote={quote} author={author} fetchQuote={fetchQuote}
+          backgroundColor={backgroundColor} 
+          textColor={textColor}
+      />
+      {/* {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
           <p>"{quote}"</p>
           <p>- {author}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
