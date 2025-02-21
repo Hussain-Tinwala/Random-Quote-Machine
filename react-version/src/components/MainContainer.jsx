@@ -134,7 +134,6 @@ export default function MainContainer(props) {
           >
 
             <Button
-              id="new-quote"
               variant="contained"
               style={{
                 background: '#cfe8fc',
